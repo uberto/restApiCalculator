@@ -1,12 +1,19 @@
 package com.gamasoft;
 
+import com.gamasoft.model.Calculations;
+import com.gamasoft.webserver.CalculatorRoute;
+import com.gamasoft.webserver.WebServer;
+
+import java.util.List;
+
 /**
- * Created by uberto on 07/07/17.
+ * class for the main method
  */
 public class Main {
 
 
     public static void main(String[] args){
-        System.out.println("Bye");
+        List<CalculatorRoute> routes = Calculations.getAllCalculations();
+        WebServer.start(8080, routes);
     }
 }
