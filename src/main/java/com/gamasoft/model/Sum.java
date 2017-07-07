@@ -1,26 +1,21 @@
 package com.gamasoft.model;
 
-import com.gamasoft.webserver.CalculatorRoute;
-import spark.Request;
-import spark.Response;
-import spark.Route;
+import com.gamasoft.webserver.Calculation;
+
+import java.util.Map;
 
 /**
  * Example of route for integer sum
  */
-public class Sum implements CalculatorRoute {
+public class Sum implements Calculation {
     @Override
     public String getPath() {
         return "sum/:a/:b";
     }
 
     @Override
-    public Route getRoute() {
-        return (request, response) -> {
-            double a = Double.valueOf(request.params(":a"));
-            double b = Double.valueOf(request.params(":b"));
-            double v = a + b;
-            return "result " + v;
-        };
+    public double calcResult(Map<String, Double> params) {
+        return params.get(":a") + params.get(":b");
     }
+
 }

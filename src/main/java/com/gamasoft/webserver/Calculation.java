@@ -2,11 +2,13 @@ package com.gamasoft.webserver;
 
 import spark.Route;
 
+import java.util.Map;
+
 /**
  * Interface needed to create routes for spark webserver
  */
-public interface CalculatorRoute {
+public interface Calculation {
     String getPath();
 
-    Route getRoute();
+    double calcResult(Map<String, Double> params);
 }
