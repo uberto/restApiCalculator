@@ -1,6 +1,6 @@
 package com.gamasoft;
 
-import com.gamasoft.model.Calculations;
+import com.gamasoft.webserver.Calculations;
 import com.gamasoft.webserver.Calculation;
 import com.gamasoft.webserver.WebServer;
 
