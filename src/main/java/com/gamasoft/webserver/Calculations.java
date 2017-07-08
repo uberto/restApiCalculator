@@ -1,5 +1,6 @@
 package com.gamasoft.webserver;
 
+import com.gamasoft.model.CompoundInterest;
 import com.gamasoft.model.SimpleInterest;
 import com.gamasoft.webserver.Calculation;
 
@@ -11,6 +12,6 @@ import java.util.List;
  */
 public class Calculations {
     public static List<Calculation> getAllCalculations() {
-        return Arrays.asList(new SimpleInterest());
+        return Arrays.asList(new SimpleInterest(), new CompoundInterest());
     }
 }

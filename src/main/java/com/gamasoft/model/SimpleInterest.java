@@ -5,7 +5,7 @@ import com.gamasoft.webserver.Calculation;
 import java.util.Map;
 
 /**
- * Abstraction of a simple interest calculator
+ * Api for a simple interest calculator
  */
 public class SimpleInterest implements Calculation {
     @Override

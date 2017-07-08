@@ -7,9 +7,6 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- * Created by uberto on 07/07/17.
- */
 public class SimpleInterestTest {
 
     @Test
