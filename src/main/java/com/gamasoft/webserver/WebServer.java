@@ -1,10 +1,6 @@
 package com.gamasoft.webserver;
 
-import spark.Route;
-
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 import static spark.Spark.*;
 
@@ -15,18 +11,10 @@ public class WebServer {
     public static void start(int port, List<Calculation> routes) {
         port(port);
 
-        get("/", (r,p) -> "<html><body><h1>Hello to the financial calculator!</h1></body></html>");
+        get("/", (request, response) -> RestUri.createHelloResponse(routes));
         for (Calculation r: routes) {
-            get(r.getPath(), createRoute(r));
+            get(r.getPath(), (request, response) -> RestUri.getResponse(r, request.uri()));
         }
-
-        awaitInitialization();
-    }
-
-    private static Route createRoute(Calculation calculation) {
-
-        return (request, response) -> RestParams.getResponse(calculation, request.uri().substring(1));
-
     }
 
 }

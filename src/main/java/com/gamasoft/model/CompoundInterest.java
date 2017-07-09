@@ -8,9 +8,16 @@ import java.util.Map;
  * Api for a compound interest calculator
  */
 public class CompoundInterest implements Calculation {
+
+    private UserAccounts userAccounts;
+
+    public CompoundInterest(UserAccounts userAccounts) {
+        this.userAccounts = userAccounts;
+    }
+
     @Override
     public String getPath() {
-        return "compound/principal/:principal/years/:years/periods/:periods/rate/:rate/currency/:currency";
+        return "compound/:username/principal/:principal/years/:years/periods/:periods/rate/:rate/currency/:currency";
     }
 
     @Override
@@ -20,7 +27,11 @@ public class CompoundInterest implements Calculation {
         Double t = Double.valueOf(params.get(":years"));
         Double r = Double.valueOf(params.get(":rate")) / 100;
         Integer n = Integer.valueOf(params.get(":periods"));
-        return fx * (p * Math.pow((1 + r/n), (n*t)) - p);
+        double ret = fx * (p * Math.pow((1 + r / n), (n * t)) - p);
+
+        String u = params.get(":username");
+        userAccounts.addReturnToUser(u, ret);
+        return ret;
 
     }
 }
