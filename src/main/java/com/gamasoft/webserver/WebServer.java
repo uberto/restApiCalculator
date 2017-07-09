@@ -25,17 +25,8 @@ public class WebServer {
 
     private static Route createRoute(Calculation calculation) {
 
-        return (request, response) -> calculation.calcResult(toDouble(request.params()));
+        return (request, response) -> RestParams.getResponse(calculation, request.uri().substring(1));
 
     }
 
-    private static Map<String, Double> toDouble(Map<String, String> params) {
-        return params.entrySet()
-                .stream()
-                .collect(Collectors.toMap(
-                        Map.Entry::getKey,
-                        e -> Double.parseDouble(e.getValue())
-                ));
-
-    }
 }

@@ -1,5 +1,6 @@
 package com.gamasoft.model;
 
+import com.gamasoft.webserver.RestParams;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -15,12 +16,10 @@ public class CompoundInterestTest {
 
         CompoundInterest s = new CompoundInterest();
 
-        Map<String, Double> params = new HashMap<>();
-        params.put(":years", 1.0);
-        params.put(":principal", 10.0);
-        params.put(":periods", 1.0);
-        params.put(":rate", 10.0);
-        params.put(":fx", 1.0);
+
+        String reqPath = "compound/principal/10/years/1/periods/1/rate/10/fx/1";
+        Map<String, Double> params = RestParams.extract(s, reqPath);
+
         assertEquals(1.0, s.calcResult(params), 0.0001);
 
     }
@@ -30,12 +29,9 @@ public class CompoundInterestTest {
 
         CompoundInterest s = new CompoundInterest();
 
-        Map<String, Double> params = new HashMap<>();
-        params.put(":years", 10.0);
-        params.put(":principal", 5000.0);
-        params.put(":periods", 12.0);
-        params.put(":rate", 5.0);
-        params.put(":fx", 1.0);
+        String reqPath = "compound/principal/5000/years/10/periods/12/rate/5/fx/1";
+        Map<String, Double> params = RestParams.extract(s, reqPath);
+
         assertEquals(3235.047488, s.calcResult(params), 0.0001);
 
     }
@@ -46,12 +42,9 @@ public class CompoundInterestTest {
 
         CompoundInterest s = new CompoundInterest();
 
-        Map<String, Double> params = new HashMap<>();
-        params.put(":years", 15.0);
-        params.put(":principal", 1000.0);
-        params.put(":periods", 12.0);
-        params.put(":rate", 4.0);
-        params.put(":fx", 1.1);
+        String reqPath = "compound/principal/1000/years/15/periods/12/rate/4/fx/1.1";
+        Map<String, Double> params = RestParams.extract(s, reqPath);
+
         assertEquals(902.331, s.calcResult(params), 0.01);
 
     }

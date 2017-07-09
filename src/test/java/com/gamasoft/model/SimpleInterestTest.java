@@ -1,5 +1,6 @@
 package com.gamasoft.model;
 
+import com.gamasoft.webserver.RestParams;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -14,11 +15,7 @@ public class SimpleInterestTest {
 
         SimpleInterest s = new SimpleInterest();
 
-        Map<String, Double> params = new HashMap<>();
-        params.put(":years", 1.0);
-        params.put(":principal", 10.0);
-        params.put(":rate", 20.0);
-        params.put(":fx", 1.0);
+        Map<String, Double> params = RestParams.extract(s, "simpleinterest/principal/10/years/1/rate/20/fx/1");
         assertEquals(2.0, s.calcResult(params), 0.0001);
 
     }
@@ -28,11 +25,7 @@ public class SimpleInterestTest {
 
         SimpleInterest s = new SimpleInterest();
 
-        Map<String, Double> params = new HashMap<>();
-        params.put(":years", 5.0);
-        params.put(":principal", 10.0);
-        params.put(":rate", 10.0);
-        params.put(":fx", 1.0);
+        Map<String, Double> params = RestParams.extract(s, "simpleinterest/principal/10/years/5/rate/10/fx/1");
         assertEquals(5.0, s.calcResult(params), 0.0001);
 
     }
@@ -42,11 +35,9 @@ public class SimpleInterestTest {
 
         SimpleInterest s = new SimpleInterest();
 
-        Map<String, Double> params = new HashMap<>();
-        params.put(":years", 10.0);
-        params.put(":principal", 10.0);
-        params.put(":rate", 5.0);
-        params.put(":fx", 1.1);
+        String reqPath = "simpleinterest/principal/10/years/10/rate/5/fx/1.1";
+        Map<String, Double> params = RestParams.extract(s, reqPath);
+
         assertEquals(5.5, s.calcResult(params), 0.0001);
 
     }
