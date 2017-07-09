@@ -15,7 +15,7 @@ public class WebServer {
     public static void start(int port, List<Calculation> routes) {
         port(port);
 
-        get("/", (r,p) -> "Hello to the financial calculator!");
+        get("/", (r,p) -> "<html><body><h1>Hello to the financial calculator!</h1></body></html>");
         for (Calculation r: routes) {
             get(r.getPath(), createRoute(r));
         }
