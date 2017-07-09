@@ -16,9 +16,9 @@ public class SumTest {
 
         Sum s = new Sum();
 
-        Map<String, Double> params = new HashMap<>();
-        params.put(":a", 3.0);
-        params.put(":b", 4.0);
+        Map<String, String> params = new HashMap<>();
+        params.put(":a", "3.0");
+        params.put(":b", "4.0");
         assertEquals(7, s.calcResult(params), 0.0001);
 
     }

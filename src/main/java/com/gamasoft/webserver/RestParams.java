@@ -1,5 +1,6 @@
 package com.gamasoft.webserver;
 
+import com.gamasoft.model.Currencies;
 import com.gamasoft.model.SimpleInterest;
 import com.gamasoft.model.Sum;
 
@@ -12,7 +13,8 @@ import java.util.stream.IntStream;
  */
 
 public class RestParams {
-    public static Map<String,Double> extract(Calculation calc, String reqPath) {
+
+    public static Map<String, String> extract(Calculation calc, String reqPath) {
 
         String[] modelParts = calc.getPath().split("/");
         String[] reqParts = reqPath.split("/");
@@ -21,11 +23,11 @@ public class RestParams {
             throw new CalculationException("Paths don't match " + reqPath + "   expected: " + calc.getPath());
 
 
-        Map<String,Double> res = new HashMap<>();
+        Map<String, String> res = new HashMap<>();
 
         IntStream.range(0, modelParts.length).forEach(x -> {
             if (modelParts[x].startsWith(":"))
-                res.put(modelParts[x], Double.valueOf(reqParts[x]));
+                res.put(modelParts[x], reqParts[x]);
         });
 
         return res;
@@ -33,7 +35,7 @@ public class RestParams {
 
     public static String getResponse(Calculation calc, String reqPath) {
 
-        Map<String, Double> p = extract(calc, reqPath);
+        Map<String, String> p = extract(calc, reqPath);
         double r = calc.calcResult(p);
 
         return String.format("<html><body><h2>The return is</h2><p>%.2f</p></body></html>", r);

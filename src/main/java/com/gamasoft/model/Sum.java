@@ -14,8 +14,8 @@ public class Sum implements Calculation {
     }
 
     @Override
-    public double calcResult(Map<String, Double> params) {
-        return params.get(":a") + params.get(":b");
+    public double calcResult(Map<String, String> params) {
+        return Double.valueOf(params.get(":a")) + Double.valueOf(params.get(":b"));
     }
 
 }

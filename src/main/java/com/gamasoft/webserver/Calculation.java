@@ -10,5 +10,5 @@ import java.util.Map;
 public interface Calculation {
     String getPath();
 
-    double calcResult(Map<String, Double> params);
+    double calcResult(Map<String, String> params);
 }

@@ -15,7 +15,7 @@ public class SimpleInterestTest {
 
         SimpleInterest s = new SimpleInterest();
 
-        Map<String, Double> params = RestParams.extract(s, "simpleinterest/principal/10/years/1/rate/20/fx/1");
+        Map<String, String> params = RestParams.extract(s, "simpleinterest/principal/10/years/1/rate/20/currency/USD");
         assertEquals(2.0, s.calcResult(params), 0.0001);
 
     }
@@ -25,7 +25,7 @@ public class SimpleInterestTest {
 
         SimpleInterest s = new SimpleInterest();
 
-        Map<String, Double> params = RestParams.extract(s, "simpleinterest/principal/10/years/5/rate/10/fx/1");
+        Map<String, String> params = RestParams.extract(s, "simpleinterest/principal/10/years/5/rate/10/currency/USD");
         assertEquals(5.0, s.calcResult(params), 0.0001);
 
     }
@@ -35,10 +35,10 @@ public class SimpleInterestTest {
 
         SimpleInterest s = new SimpleInterest();
 
-        String reqPath = "simpleinterest/principal/10/years/10/rate/5/fx/1.1";
-        Map<String, Double> params = RestParams.extract(s, reqPath);
+        String reqPath = "simpleinterest/principal/10/years/10/rate/5/currency/EUR";
+        Map<String, String> params = RestParams.extract(s, reqPath);
 
-        assertEquals(5.5, s.calcResult(params), 0.0001);
+        assertEquals(5.7, s.calcResult(params), 0.0001);
 
     }
 }

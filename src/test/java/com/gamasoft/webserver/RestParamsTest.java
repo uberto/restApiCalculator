@@ -17,11 +17,11 @@ public class RestParamsTest {
             Sum s = new Sum();
 
 
-            Map<String, Double> params = RestParams.extract(s, "sum/42/10.25");
+            Map<String, String> params = RestParams.extract(s, "sum/42/10.25");
 
 
-            assertEquals(42.0, params.get(":a"), 0.0001);
-            assertEquals(10.25, params.get(":b"), 0.0001);
+            assertEquals("42", params.get(":a"));
+            assertEquals("10.25", params.get(":b"));
 
     }
 
@@ -45,11 +45,7 @@ public class RestParamsTest {
         Sum s = new Sum();
 
 
-        Map<String, Double> params = RestParams.extract(s, "sum/a/42/b/10.25");
-
-
-        assertEquals(42.0, params.get(":a"), 0.0001);
-        assertEquals(10.25, params.get(":b"), 0.0001);
+        Map<String, String> params = RestParams.extract(s, "sum/a/42/b/10.25");
 
     }
 }

@@ -10,11 +10,12 @@ import java.util.Map;
 public class SimpleInterest implements Calculation {
     @Override
     public String getPath() {
-        return "simpleinterest/principal/:principal/years/:years/rate/:rate/fx/:fx";
+        return "simpleinterest/principal/:principal/years/:years/rate/:rate/currency/:currency";
     }
 
     @Override
-    public double calcResult(Map<String, Double> params) {
-        return params.get(":fx") * params.get(":principal") * params.get(":years") * (params.get(":rate") / 100.0);
+    public double calcResult(Map<String, String> params) {
+        double fx = Currencies.fxRate(params.get(":currency"));
+        return fx * Double.valueOf(params.get(":principal")) * Integer.valueOf(params.get(":years")) * (Double.valueOf(params.get(":rate")) / 100.0);
     }
 }
