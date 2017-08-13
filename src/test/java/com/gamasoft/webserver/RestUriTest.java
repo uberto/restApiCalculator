@@ -48,7 +48,7 @@ public class RestUriTest {
     @Test
     public void createHelloPageWithAllCalculationsPath() throws Exception {
 
-        String hello = RestUri.createHelloResponse(Calculations.getAllCalculations());
+        String hello = RestUri.createHelloResponse(Calculations.getAllCalculations(config.users()));
 
         assertEquals(337, hello.length());
 

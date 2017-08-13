@@ -11,7 +11,7 @@ public class CalculationsTest {
     @Test
     public void allCalculationsMustHaveAPath() throws Exception {
 
-        List<Calculation> l  = Calculations.getAllCalculations();
+        List<Calculation> l  = Calculations.getAllCalculations(config.users());
 
         for (Calculation c: l) {
             assertFalse(c.getPath().isEmpty());
