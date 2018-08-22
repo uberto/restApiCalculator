@@ -7,9 +7,9 @@ import java.util.Map;
 /**
  * Api for a compound interest calculator
  */
-public class CompoundInterest implements Calculation {
+__ByValue public class CompoundInterest implements Calculation {
 
-    private UserAccounts userAccounts;
+    public final UserAccounts userAccounts;
 
     public CompoundInterest(UserAccounts userAccounts) {
         this.userAccounts = userAccounts;

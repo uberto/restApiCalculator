@@ -3,6 +3,7 @@ package com.gamasoft.webserver;
 import com.gamasoft.model.Sum;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import static org.junit.Assert.*;
@@ -48,7 +49,7 @@ public class RestUriTest {
     @Test
     public void createHelloPageWithAllCalculationsPath() throws Exception {
 
-        String hello = RestUri.createHelloResponse(Calculations.getAllCalculations(config.users()));
+        String hello = RestUri.createHelloResponse(Calculations.getAllCalculations(new ArrayList<>()));
 
         assertEquals(337, hello.length());
 

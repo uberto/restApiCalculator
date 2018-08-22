@@ -3,6 +3,9 @@ package com.gamasoft.model;
 import com.gamasoft.webserver.RestUri;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -10,10 +13,10 @@ import static org.junit.Assert.assertEquals;
 
 public class CompoundInterestTest {
 
+    CompoundInterest s = new CompoundInterest(new UserAccounts(new ArrayList<>()));
+
     @Test
     public void calculateInterestOn1YearWithOnePeriod() throws Exception {
-
-        CompoundInterest s = new CompoundInterest(new UserAccounts());
 
 
         String reqPath = "compound/fred/principal/10/years/1/periods/1/rate/10/currency/USD";
@@ -26,8 +29,6 @@ public class CompoundInterestTest {
     @Test
     public void calculateInterestOn10YearWith12Period() throws Exception {
 
-        CompoundInterest s = new CompoundInterest(new UserAccounts());
-
         String reqPath = "compound/fred/principal/5000/years/10/periods/12/rate/5/currency/USD";
         Map<String, String> params = RestUri.extract(s, reqPath);
 
@@ -38,8 +39,6 @@ public class CompoundInterestTest {
 
     @Test
     public void calculateInterestOn15YearWith12PeriodWithFx() throws Exception {
-
-        CompoundInterest s = new CompoundInterest(new UserAccounts());
 
         String reqPath = "compound/fred/principal/1000/years/15/periods/12/rate/4/currency/GBP";
         Map<String, String> params = RestUri.extract(s, reqPath);
@@ -52,7 +51,7 @@ public class CompoundInterestTest {
     @Test
     public void addReturnToUserAccount() throws Exception {
 
-        UserAccounts accounts = new UserAccounts();
+        UserAccounts accounts = new UserAccounts(List.of("fred"));
         accounts.addReturnToUser("fred", 9.0);
         CompoundInterest s = new CompoundInterest(accounts);
 

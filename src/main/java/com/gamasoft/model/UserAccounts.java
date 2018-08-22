@@ -8,9 +8,9 @@ import java.util.function.BiFunction;
 /**
  * class to simulate a storage system for user returns
  */
-public class UserAccounts {
+__ByValue public class UserAccounts {
 
-    private Map<String, Double> accounts = new ConcurrentHashMap<>();
+    public final Map<String, Double> accounts = new ConcurrentHashMap<>();
 
     public UserAccounts(List<String> users) {
         for (String u: users) {
@@ -19,8 +19,11 @@ public class UserAccounts {
     }
 
     public void addReturnToUser(String userName, double amount){
-
-        accounts.computeIfPresent(userName, (String u, Double a) -> amount + a);
+        Double prev = accounts.get(userName);
+        if ( prev != null) {
+            accounts.put(userName, amount + prev);
+        }
+//        accounts.computeIfPresent(userName, (String u, Double a) -> amount + a);
     }
 
 

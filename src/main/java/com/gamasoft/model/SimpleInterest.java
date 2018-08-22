@@ -7,8 +7,8 @@ import java.util.Map;
 /**
  * Api for a simple interest calculator
  */
-public class SimpleInterest implements Calculation {
-    private UserAccounts userAccounts;
+__ByValue public class SimpleInterest implements Calculation {
+    final public UserAccounts userAccounts;
 
     public SimpleInterest(UserAccounts userAccounts) {
         this.userAccounts = userAccounts;

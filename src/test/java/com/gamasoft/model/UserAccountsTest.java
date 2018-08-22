@@ -2,13 +2,16 @@ package com.gamasoft.model;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class UserAccountsTest {
+    UserAccounts ua = new UserAccounts(List.of("joe", "frank", "annie"));
 
     @Test
     public void currentTotalShouldRetunTheSumOfAllReturn() throws Exception {
-        UserAccounts ua = new UserAccounts();
 
         ua.addReturnToUser("joe", 100);
         assertEquals(100.0, ua.currentReturnTotal("joe"), 0.0001);
@@ -22,7 +25,6 @@ public class UserAccountsTest {
 
     @Test
     public void firstAmountShouldBeZero() throws Exception {
-        UserAccounts ua = new UserAccounts();
 
         assertEquals(0.0, ua.currentReturnTotal("joe"), 0.0001);
 
@@ -31,7 +33,6 @@ public class UserAccountsTest {
 
     @Test
     public void addAmountToAccountShouldNotAffectOtherUsers() throws Exception {
-        UserAccounts ua = new UserAccounts();
 
         ua.addReturnToUser("joe", 100);
         ua.addReturnToUser("frank", 110);

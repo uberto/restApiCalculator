@@ -3,16 +3,19 @@ package com.gamasoft.model;
 import com.gamasoft.webserver.RestUri;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
 public class SimpleInterestTest {
 
+    SimpleInterest s = new SimpleInterest(new UserAccounts(new ArrayList<>()));
+
     @Test
     public void calculateInterestOn1Year() throws Exception {
 
-        SimpleInterest s = new SimpleInterest(new UserAccounts());
 
         Map<String, String> params = RestUri.extract(s, "simpleinterest/joe/principal/10/years/1/rate/20/currency/USD");
         assertEquals(2.0, s.calcResult(params), 0.0001);
@@ -22,7 +25,8 @@ public class SimpleInterestTest {
     @Test
     public void addReturnToUserAccount() throws Exception {
 
-        UserAccounts accounts = new UserAccounts();
+        UserAccounts accounts = new UserAccounts(List.of("joe"));
+
         accounts.addReturnToUser("joe", 8.0);
         SimpleInterest s = new SimpleInterest(accounts);
 
@@ -37,7 +41,6 @@ public class SimpleInterestTest {
     @Test
     public void calculateInterestOn5Years() throws Exception {
 
-        SimpleInterest s = new SimpleInterest(new UserAccounts());
 
         Map<String, String> params = RestUri.extract(s, "simpleinterest/joe/principal/10/years/5/rate/10/currency/USD");
         assertEquals(5.0, s.calcResult(params), 0.0001);
@@ -47,7 +50,6 @@ public class SimpleInterestTest {
     @Test
     public void calculateInterestOn10YearsWithFx() throws Exception {
 
-        SimpleInterest s = new SimpleInterest(new UserAccounts());
 
         String reqPath = "simpleinterest/joe/principal/10/years/10/rate/5/currency/EUR";
         Map<String, String> params = RestUri.extract(s, reqPath);
